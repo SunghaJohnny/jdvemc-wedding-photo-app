@@ -1,50 +1,64 @@
 body {
-    background: #fff7f0;
+    background: #fdf6f0;
     font-family: 'Poppins', sans-serif;
     text-align: center;
     padding: 40px;
-    color: #333;
+    color: #5c3b1e;
   }
   
   .container {
     max-width: 500px;
+    max-height: fit-content;
     margin: auto;
-    background: #ffffff;
+    background: #fffaf5;
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    border: 2px solid #f0d9b5;
   }
   
   h1 {
-    color: #e87ea1;
+    color: #b74e2d;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 16px;
+    color: #7b4a2d;
+    margin-bottom: 20px;
   }
   
   .upload-btn {
-    background-color: #e87ea1;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 30px;
+    background-color: #d37b49;
+    color: #fffaf0;
+    padding: 14px 28px;
+    border-radius: 35px;
     cursor: pointer;
     margin-top: 20px;
     display: inline-block;
     font-size: 16px;
     transition: background 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
   
   .upload-btn:hover {
-    background-color: #d46a8c;
+    background-color: #b96132;
   }
-
+  
   .responsive-img {
-    width: 80vw;      /* 80% of the viewport width */
-    max-width: 100%;  /* Prevent going beyond its container */
-    height: auto;     /* Maintain aspect ratio */
+    width: 80vw;
+    height: 50vw;
+    max-width: 100%;
+    height: auto;
     display: block;
-    margin: 0 auto;   /* Center the image horizontally */
+    margin: 0 auto 20px auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
   
   #statusMessage {
     margin-top: 20px;
     font-size: 18px;
+    color: #6b3e2e;
   }
   
