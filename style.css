@@ -34,6 +34,14 @@ body {
   .upload-btn:hover {
     background-color: #d46a8c;
   }
+
+  .responsive-img {
+    width: 80vw;      /* 80% of the viewport width */
+    max-width: 100%;  /* Prevent going beyond its container */
+    height: auto;     /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto;   /* Center the image horizontally */
+  }
   
   #statusMessage {
     margin-top: 20px;
