@@ -1,0 +1,42 @@
+body {
+    background: #fff7f0;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 40px;
+    color: #333;
+  }
+  
+  .container {
+    max-width: 500px;
+    margin: auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  h1 {
+    color: #e87ea1;
+  }
+  
+  .upload-btn {
+    background-color: #e87ea1;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 16px;
+    transition: background 0.3s ease;
+  }
+  
+  .upload-btn:hover {
+    background-color: #d46a8c;
+  }
+  
+  #statusMessage {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
