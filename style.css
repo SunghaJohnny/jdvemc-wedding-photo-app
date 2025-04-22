@@ -4,76 +4,101 @@ body {
   background: linear-gradient(to bottom right, #fffaf5, #f9e9dd);
   font-family: 'Inter', sans-serif;
   text-align: center;
-  padding: 40px 20px;
+  padding: 8vh 5vw;
   color: #2e1f1a;
+  margin: 0;
 }
 
 .container {
-  max-width: 90vw;
-  height: 90vh;
+  max-width: 480px;
+  width: 100%;
   margin: auto;
   background: #ffffffcc;
   backdrop-filter: blur(12px);
-  padding: 32px;
-  border-radius: 24px;
+  padding: 2rem;
+  border-radius: 1.5rem;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   border: 1px solid #f1d6c6;
   transition: transform 0.3s ease;
 }
 
 .container:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
 }
 
 h1 {
   color: #a3472f;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
 }
 
 h2 {
     color: #a3472f;
-    font-size: 26px;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 12px;
+    margin-bottom: 2rem;
   }
 
 p {
-  font-size: 15px;
+  font-size: 1rem;
   color: #4e362d;
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
   line-height: 1.6;
+  padding: 0 0.5rem;
 }
 
 .upload-btn {
   background: linear-gradient(to right, #cd5b34, #e28a5c);
   color: white;
-  padding: 14px 30px;
+  padding: 0.85rem 2rem;
   border-radius: 999px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 600;
   border: none;
   transition: background 0.3s ease, transform 0.2s ease;
   box-shadow: 0 4px 10px rgba(205, 91, 52, 0.3);
+  display: inline-block;
 }
 
 .upload-btn:hover {
   background: linear-gradient(to right, #b74e2d, #d97648);
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .responsive-img {
-    width: 80%;
-    border-radius: 16px;
-    margin-bottom: 24px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
 }
 
 #statusMessage {
-  margin-top: 20px;
-  font-size: 16px;
+  margin-top: 1.5rem;
+  font-size: 1rem;
   color: #5c3b2e;
   line-height: 1.5;
+}
+
+/* Mobile-Specific Tweaks */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .upload-btn {
+    width: 100%;
+    padding: 1rem 0;
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 1.5rem;
+  }
 }
