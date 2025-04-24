@@ -165,7 +165,7 @@ h2 {
   }
 
   .message-content p {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
   .upload-btn {
@@ -176,12 +176,15 @@ h2 {
 
 @media (max-width: 480px) {
   .container {
-    padding: 1.5rem 1.25rem;
+    padding: 1.25rem 1rem;
     border-radius: 1rem;
   }
 
   .responsive-img {
-    margin-bottom: 1.8rem;
+    margin-bottom: 1rem;
+    max-height: 400px; /* Constrain image size */
+    object-fit: cover;
+    width: 100%;
   }
 
   h1 {
