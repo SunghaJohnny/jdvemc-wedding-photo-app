@@ -1,43 +1,31 @@
-// api/upload.js
+// /api/upload.js
+const cloudinary = require('cloudinary').v2;
 
-document.getElementById('fileUpload').addEventListener('change', function (e) {
-    const files = e.target.files;
-    if (!files || files.length === 0) return;
-  
-    const statusDiv = document.getElementById('statusMessage');
-    statusDiv.innerHTML = "Uploading photo(s)... 📤<br>";
-  
-    Array.from(files).forEach(file => {
-      const reader = new FileReader();
-  
-      reader.onloadend = function () {
-        fetch('/api/upload', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ image: reader.result }),
-        })
-          .then(async res => {
-            if (!res.ok) {
-              const errorText = await res.text();
-              throw new Error(errorText);
-            }
-            return res.json();
-          })
-          .then(data => {
-            console.log('Upload success:', data);
-            statusDiv.innerHTML += `
-              ✅ Uploaded: <a href="${data.secure_url}" target="_blank">${file.name}</a><br>
-            `;
-          })
-          .catch(err => {
-            console.error('Upload error:', err);
-            statusDiv.innerHTML += `❌ Failed to upload ${file.name}<br>`;
-          });
-      };
-  
-      reader.readAsDataURL(file); // Convert image to base64
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Only POST allowed' });
+  }
+
+  const { image } = req.body;
+
+  if (!image) {
+    return res.status(400).json({ message: 'No image data' });
+  }
+
+  try {
+    const result = await cloudinary.uploader.upload(image, {
+      upload_preset: 'wedding_guest_upload',
     });
-  });
-  
+
+    return res.status(200).json({ secure_url: result.secure_url });
+  } catch (error) {
+    console.error('Upload error:', error);
+    return res.status(500).json({ message: 'Upload failed', error: error.message });
+  }
+}
