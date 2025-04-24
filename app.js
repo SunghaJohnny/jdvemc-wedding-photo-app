@@ -1,6 +1,3 @@
-// preset wedding_guest_upload
-// cloud name duovsekrd
-
 document.getElementById('fileUpload').addEventListener('change', function (e) {
     const files = e.target.files;
     if (!files || files.length === 0) return;
@@ -13,23 +10,19 @@ document.getElementById('fileUpload').addEventListener('change', function (e) {
   
       reader.onloadend = function () {
         fetch('/api/upload', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ image: reader.result }),
-        })
-          .then(res => res.json())
-          .then(data => {
-            console.log('Upload success:', data);
-            statusDiv.innerHTML += `
-              ✅ Uploaded: <a href="${data.secure_url}" target="_blank">${file.name}</a><br>
-            `;
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ image: reader.result }),
           })
-          .catch(err => {
-            console.error('Upload error:', err);
-            statusDiv.innerHTML += `❌ Failed to upload ${file.name}<br>`;
-          });
+          .then(async res => {
+            if (!res.ok) {
+              const errorText = await res.text();
+              throw new Error(errorText);
+            }
+            return res.json();
+          })
       };
   
       reader.readAsDataURL(file); // Convert image to base64
