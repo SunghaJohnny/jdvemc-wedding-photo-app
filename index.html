@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>🍂 Share the Love — Our Autumn Wedding</title>
   <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
   <div class="container">
@@ -12,20 +13,29 @@
       src="https://res.cloudinary.com/duovsekrd/image/upload/v1745307183/vkhru66s0fbrqqomt6o0.jpg" 
       alt="Wedding Moment"
     >
-    <h1>Euna and John Wedding 🍂</h1>
-    <h2>June 6, 2025</h2>
-    <p>We’re so happy you're celebrating with us. 
-        Snap a memory and upload it here—we’d love to see it!</p>
+    <div class="header-content">
+      <h1>Euna and John's Wedding 🍂</h1>
+      <h2>June 6, 2025</h2>
+    </div>
+    
+    <div class="message-content">
+      <p>We're so grateful to have you celebrating with us.</p>
+      <p>Capture a special moment—share it with us!</p>
+    </div>
 
+    <div class="upload-section">
+      <label class="upload-btn">
+        🍂 Share a Photo
+        <input type="file" id="fileUpload" accept="image/*" multiple hidden>
+      </label>
+    </div>
 
-    <label class="upload-btn">
-      🍂 Upload Your Photo
-      <input type="file" id="fileUpload" accept="image/*" multiple hidden>
-    </label>
-
-    <div id="statusMessage"></div>
+    <div id="statusMessage" class="status-message"></div>
   </div>
 
   <script src="app.js"></script>
+
+  <div id="toast" class="toast">Thank you for sharing your memory! 🍂</div>
+
 </body>
 </html>
