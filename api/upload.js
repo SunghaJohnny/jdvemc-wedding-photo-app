@@ -20,6 +20,12 @@ module.exports = async (req, res) => {
 
   try {
     // Get the image data from request body
+
+    console.log("Cloudinary Config:", {
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME ? "exists" : "MISSING",
+        api_key: process.env.CLOUDINARY_API_KEY ? "exists" : "MISSING"
+      });
+      
     const { image } = req.body;
     
     if (!image) {
