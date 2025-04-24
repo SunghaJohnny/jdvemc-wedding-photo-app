@@ -1,42 +1,129 @@
-body {
-    background: #fff7f0;
-    font-family: 'Poppins', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+html, body {
+    background-image: url('https://res.cloudinary.com/duovsekrd/image/upload/v1745315303/Background_fxhut3.png');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    
+    font-family: 'Cormorant Garamond', serif;
+    color: #2e1f1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 40px;
-    color: #333;
-  }
+}
+
+body {
+  padding: 4vh 4vw;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 700px;
+  background: #ffffffee;
+  border: 1px solid #f1d6c6;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-2px);
+}
+
+.responsive-img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+}
+
+h1 {
+  font-size: 3rem;
+  color: #a3472f;
+  margin-bottom: 0.1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #7a3c2e;
+  margin-bottom: 1rem;
+}
+
+p {
+    
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.upload-btn {
+  background: linear-gradient(to right, #cd5b34, #e28a5c);
+  color: white;
+  padding: 1rem;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(205, 91, 52, 0.3);
+}
+
+.upload-btn:hover {
+  background: linear-gradient(to right, #b74e2d, #d97648);
+  transform: scale(1.02);
+}
+
+#statusMessage {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #5c3b2e;
+}
+
+/* Mobile-Specific Tweaks */
+@media (max-width: 480px) {
+    body {
+      padding: 3vh 5vw;
+    }
   
-  .container {
-    max-width: 500px;
-    margin: auto;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
+    .container {
+      padding: 1.25rem;
+      border-radius: 1rem;
+    }
   
-  h1 {
-    color: #e87ea1;
-  }
+    h1 {
+      font-size: 1.4rem;
+    }
   
-  .upload-btn {
-    background-color: #e87ea1;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 30px;
-    cursor: pointer;
-    margin-top: 20px;
-    display: inline-block;
-    font-size: 16px;
-    transition: background 0.3s ease;
-  }
+    h2 {
+      font-size: 1rem;
+    }
   
-  .upload-btn:hover {
-    background-color: #d46a8c;
-  }
+    p {
+      font-size: 0.9rem;
+    }
   
-  #statusMessage {
-    margin-top: 20px;
-    font-size: 18px;
+    .upload-btn {
+      font-size: 0.95rem;
+      padding: 0.9rem;
+    }
+  
+    #statusMessage {
+      font-size: 0.9rem;
+    }
   }
   

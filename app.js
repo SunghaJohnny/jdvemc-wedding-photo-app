@@ -1,35 +1,38 @@
 // preset wedding_guest_upload
 // cloud name duovsekrd
 
-const cloudName = 'duovsekrd'; 
-const uploadPreset = 'wedding_guest_upload'; 
-
-document.getElementById('fileUpload').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-
-  const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
-
-  const formData = new FormData();
-  formData.append('file', file);
-  formData.append('upload_preset', uploadPreset);
-
-  document.getElementById('statusMessage').innerText = "Uploading photo... 📤";
-
-  fetch(url, {
-    method: 'POST',
-    body: formData
-  })
-  .then(res => res.json())
-  .then(data => {
-    console.log('Upload success:', data);
-    document.getElementById('statusMessage').innerHTML = `
-      ✅ Photo uploaded! Thank you!<br>
-      <a href="${data.secure_url}" target="_blank">View Your Photo</a>
-    `;
-  })
-  .catch(err => {
-    console.error('Upload error:', err);
-    document.getElementById('statusMessage').innerText = "Oops! Upload failed.";
+document.getElementById('fileUpload').addEventListener('change', function (e) {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+  
+    const statusDiv = document.getElementById('statusMessage');
+    statusDiv.innerHTML = "Uploading photo(s)... 📤<br>";
+  
+    Array.from(files).forEach(file => {
+      const reader = new FileReader();
+  
+      reader.onloadend = function () {
+        fetch('/api/upload', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ image: reader.result }),
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log('Upload success:', data);
+            statusDiv.innerHTML += `
+              ✅ Uploaded: <a href="${data.secure_url}" target="_blank">${file.name}</a><br>
+            `;
+          })
+          .catch(err => {
+            console.error('Upload error:', err);
+            statusDiv.innerHTML += `❌ Failed to upload ${file.name}<br>`;
+          });
+      };
+  
+      reader.readAsDataURL(file); // Convert image to base64
+    });
   });
-});
+  
