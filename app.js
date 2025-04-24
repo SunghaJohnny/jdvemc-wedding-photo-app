@@ -7,56 +7,55 @@ document.getElementById('fileUpload').addEventListener('change', async function 
       return;
     }
   
-    // Clear previous messages
     statusDiv.innerHTML = "Uploading...<br>";
     
-    // Process each file one by one
     for (const file of files) {
       try {
-        // Show upload started
         statusDiv.innerHTML += `Starting upload for: ${file.name}<br>`;
         
-        // Convert to base64
+        // Convert to base64 (keep the prefix this time)
         const base64Image = await readFileAsBase64(file);
         
-        // Upload to your API
         const response = await fetch('/api/upload', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ image: base64Image }),
         });
   
-        const result = await response.json();
-  
-        if (!response.ok) {
-          throw new Error(result.message || 'Upload failed');
+        // First check if response is JSON
+        const text = await response.text();
+        let result;
+        try {
+          result = JSON.parse(text);
+        } catch {
+          throw new Error(`Server returned: ${text.substring(0, 100)}...`);
         }
   
-        // Show success
+        if (!response.ok) {
+          throw new Error(result.message || `Upload failed (status ${response.status})`);
+        }
+  
         statusDiv.innerHTML += `
           ✅ Success!<br>
           File: ${file.name}<br>
-          URL: <a href="${result.url}" target="_blank">View Image</a><br><br>
+          URL: <a href="${result.url || result.secure_url}" target="_blank">View Image</a><br><br>
         `;
         
       } catch (error) {
-        // Show error
         statusDiv.innerHTML += `
           ❌ Error with ${file.name}:<br>
           ${error.message}<br><br>
         `;
-        console.error('Upload error:', error);
+        console.error('Full error:', error);
       }
     }
   });
   
-  // Helper function to convert file to base64
+  // Keep the data:image/ prefix this time
   function readFileAsBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = () => resolve(reader.result.split(',')[1]); // Remove data:image/... prefix
+      reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
       reader.readAsDataURL(file);
     });
