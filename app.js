@@ -69,6 +69,12 @@ document.getElementById('fileUpload').addEventListener('change', async function 
       // =====================
       const isMock = result.mock ? ' (Mock Preview)' : '';
 
+      // Reload gallery
+
+      if (isMock === false) {
+        await loadImageGallery();
+      }      
+
       // Clear status
       statusDiv.innerHTML = '';
       
@@ -125,3 +131,28 @@ function showToast(message = "Thank you for sharing your memory! 🍂") {
     toast.classList.remove('show');
   }, 3500); // show for 3.5 seconds
 }
+
+// ========== DISPLAY IMAGE GALLERY ==========
+async function loadImageGallery() {
+  try {
+    const response = await fetch('/api/images');
+    const data = await response.json();
+
+    if (data.success && Array.isArray(data.images)) {
+      const gallery = document.getElementById('imageGallery');
+      gallery.innerHTML = '';
+
+      data.images.forEach(url => {
+        const img = document.createElement('img');
+        img.src = url;
+        img.className = 'gallery-img';
+        gallery.appendChild(img);
+      });
+    }
+  } catch (error) {
+    console.error('Gallery load error:', error);
+  }
+}
+
+// Call on load
+window.addEventListener('DOMContentLoaded', loadImageGallery);
