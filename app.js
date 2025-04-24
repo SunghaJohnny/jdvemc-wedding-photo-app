@@ -35,10 +35,11 @@ document.getElementById('fileUpload').addEventListener('change', async function 
           throw new Error(result.message || `Upload failed (status ${response.status})`);
         }
   
+        // Replace this part in your success message:
         statusDiv.innerHTML += `
-          ✅ Success!<br>
-          File: ${file.name}<br>
-          URL: <a href="${result.url || result.secure_url}" target="_blank">View Image</a><br><br>
+        ✅ Success!<br>
+        File: ${file.name}<br>
+        URL: <a href="${result.url || result.secure_url}" target="_blank">View Image</a><br><br>
         `;
         
       } catch (error) {
