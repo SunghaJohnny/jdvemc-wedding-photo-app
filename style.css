@@ -1,27 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Rubik:wght@400;600&display=swap');
 
 :root {
-  --primary-color: #a3472f;
-  --secondary-color: #7a3c2e;
-  --text-color: #2e1f1a;
-  --gradient-start: #cd5b34;
-  --gradient-end: #e28a5c;
+  --primary-color: #8C4B38;         /* Muted terracotta */
+  --secondary-color: #5F3C32;       /* Warm dark brown */
+  --text-color: #2E2A27;            /* Near-black soft text */
+  --gradient-start: #D6A67A;        /* Warm beige/gold */
+  --gradient-end: #EFD9C1;          /* Light creamy tan */
   --bg-overlay: #ffffffee;
-  --border-color: #f1d6c6;
+  --border-color: #e7d4c6;
 }
 
 html, body {
-    background-image: url('https://res.cloudinary.com/duovsekrd/image/upload/v1745315303/Background_fxhut3.png');
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: cover;
-    background-attachment: fixed;
+    background-color: var(--gradient-end);
     margin: 0;
     padding: 0;
-    min-height: 100vh;
     font-family: 'Playfair Display', serif;
     color: var(--text-color);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -45,12 +41,25 @@ body {
   transition: transform 0.3s ease;
 }
 
+.container {
+  flex: 1; /* takes up remaining space */
+}
+
+.container {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .container:hover {
   transform: translateY(-2px);
 }
 
 .responsive-img {
-  width: 100%;
+  width: 85%;
   height: auto;
   border-radius: 1rem;
   margin-bottom: 2.5rem;
@@ -83,7 +92,7 @@ h2 {
   font-family: 'Rubik', sans-serif;
   font-size: 1.1rem;
   line-height: 1.6;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.5rem 0;
 }
 
 .message-content p:last-child {
@@ -98,7 +107,7 @@ h2 {
 .upload-btn {
   font-family: 'Rubik', sans-serif;
   display: block;
-  background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+  background: linear-gradient(to right, var(--gradient-start), var(--gradient-start));
   color: white;
   padding: 1.2rem 2rem;
   font-size: 1.1rem;
@@ -123,12 +132,19 @@ h2 {
   line-height: 1.5;
 }
 
+.footer {
+  text-align: center;
+  font-size: 0.7rem;
+  color: #999;
+  margin-top: 2rem;
+}
+
 .toast {
   position: fixed;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  background: #a3472f;
+  background: var(--gradient-end);
   color: white;
   padding: 1rem 2rem;
   border-radius: 999px;
@@ -171,6 +187,13 @@ h2 {
   .upload-btn {
     padding: 1rem 1.5rem;
     font-size: 1rem;
+  }
+
+  .footer {
+    text-align: center;
+    font-size: 0.4rem;
+    color: #999;
+    margin-top: 2rem;
   }
 }
 
